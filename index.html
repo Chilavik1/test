@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Угадай число</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  #game { margin-top: 20px; }
+  button { margin-top: 10px; }
+</style>
+</head>
+<body>
+<div id="game">
+  <p>Угадайте число от 1 до 10. У вас есть 3 попытки.</p>
+  <input type="number" id="userGuess" min="1" max="10">
+  <button onclick="guessNumber()">Проверить</button>
+  <p id="result"></p>
+</div>
+<script>
+  var secretNumber = Math.floor(Math.random() * 10) + 1;
+  var attempts = 3;
+
+  function guessNumber() {
+    var userGuess = document.getElementById('userGuess').value;
+    var resultElement = document.getElementById('result');
+    attempts--;
+
+    if (parseInt(userGuess) === secretNumber) {
+      resultElement.textContent = 'Поздравляем! Вы угадали число.';
+      return;
+    } else if (attempts > 0) {
+      resultElement.textContent = 'Неправильно. Попробуйте еще раз. Осталось попыток: ' + attempts;
+    } else {
+      resultElement.textContent = 'Вы проиграли. Загаданное число было: ' + secretNumber;
+    }
+  }
+</script>
+</body>
+</html>
